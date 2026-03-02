@@ -1,4 +1,5 @@
 import json
+import os
 import sys
 import uuid
 from datetime import datetime
@@ -259,6 +260,7 @@ if __name__ == "__main__":
     if "--http" in sys.argv:
         import uvicorn
 
-        uvicorn.run(app, host="0.0.0.0", port=8000)
+        port = int(os.environ.get("PORT", 8000))
+        uvicorn.run(app, host="0.0.0.0", port=port)
     else:
         mcp.run()
